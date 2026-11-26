@@ -1,6 +1,7 @@
 import {createHmac,scryptSync,timingSafeEqual} from "node:crypto";
 import {cookies} from "next/headers";
 export const COOKIE="apiworkbench_session";
+export function isAllowedOrigin(origin:string|null,requestOrigin:string){if(!origin)return false;try{const supplied=new URL(origin);const expected=new URL(process.env.AUTH_BASE_URL||requestOrigin);return supplied.origin===expected.origin&&supplied.origin===origin}catch{return false}}
 const TTL=8*60*60;
 function key(){const s=process.env.AUTH_SECRET;if(!s||Buffer.byteLength(s)<32)throw Error("AUTH_SECRET must contain at least 32 bytes");return s}
 function sign(v:string){return createHmac("sha256",key()).update(v).digest("base64url")}
