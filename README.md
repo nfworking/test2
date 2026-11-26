@@ -9,7 +9,7 @@ Generate a scrypt password hash using Node's built-in crypto:
 node -e "const c=require('node:crypto');const salt=c.randomBytes(16).toString('hex');const hash=c.scryptSync(process.argv[1],salt,64).toString('hex');console.log(salt+':'+hash)" 'YOUR-STRONG-PASSWORD'
 ```
 Set the hash output as `AUTH_PASSWORD_HASH`, your chosen login as `AUTH_USERNAME`, and the OpenSSL output as `AUTH_SECRET`. Set `AUTH_BASE_URL` to the exact public origin used to open the app, for example `https://your-app.vercel.app` (no trailing slash). For a custom domain, use that domain instead. Add it in Vercel Project Settings → Environment Variables, then redeploy. Restart after env changes.
-
+f
 ## Run
 ```bash
 pnpm install
